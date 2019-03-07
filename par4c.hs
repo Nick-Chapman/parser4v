@@ -3,14 +3,15 @@
 module Par4c (Par,exec,fail,alt,error,nonConsuming,satisfy) where -- 4-continuation style
 
 import Prelude hiding (error,fail)
+import Control.Monad(liftM, ap)
 import Result
 
 instance Functor Par where
-  fmap f p = do x <- p; return (f x) -- how do we say to use the standard default?
+  fmap = liftM
 
 instance Applicative Par where
   pure = unit
-  (<*>) p1 p2 = do f <- p1; x <- p2; return (f x) -- how do we say to use the standard default?
+  (<*>) = ap
 
 instance Monad Par where
   (>>=) = bind
