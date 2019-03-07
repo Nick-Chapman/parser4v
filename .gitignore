@@ -1,0 +1,4 @@
+jbuild
+*.o
+*.hi
+main.exe
